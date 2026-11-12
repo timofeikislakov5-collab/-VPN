@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js"</script>
 <style>
 :root{
   --bg:#07040f;
@@ -28,13 +29,15 @@
   --ok:#4ade80;
   --grad:linear-gradient(135deg,#c084fc 0%,#a855f7 35%,#7c3aed 70%,#6366f1 100%);
   --radius:22px;
+  --display:Unbounded,"Arial Black","Helvetica Neue",Arial,sans-serif;
+  --body:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:Manrope,system-ui,sans-serif;
+  font-family:var(--body);
   line-height:1.55;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
@@ -81,7 +84,7 @@ header{
 }
 header.scrolled{border-bottom-color:var(--line);background:rgba(7,4,15,.8)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
-.logo{display:flex;align-items:center;gap:12px;font-family:Unbounded;font-weight:800;font-size:19px;letter-spacing:.02em}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.02em}
 .logo-mark{
   width:40px;height:40px;border-radius:12px;display:grid;place-items:center;position:relative;
   background:var(--grad);box-shadow:0 0 0 1px rgba(255,255,255,.15) inset,0 10px 30px -8px rgba(168,85,247,.8);
@@ -154,7 +157,7 @@ header.scrolled{border-bottom-color:var(--line);background:rgba(7,4,15,.8)}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:pulse 2s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
 h1{
-  font-family:Unbounded;font-weight:900;line-height:1.02;letter-spacing:-.025em;
+  font-family:var(--display);font-weight:900;line-height:1.02;letter-spacing:-.025em;
   font-size:clamp(42px,6vw,86px);margin:26px 0 22px;
 }
 h1 .shine{
@@ -169,7 +172,7 @@ h1 .shine{
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
 .trust{display:flex;gap:26px;margin-top:44px;flex-wrap:wrap}
 .trust div{display:flex;flex-direction:column}
-.trust strong{font-family:Unbounded;font-size:28px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.trust strong{font-family:var(--display);font-size:28px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .trust span{font-size:13.5px;color:var(--dim);font-weight:600}
 
 /* hero visual */
@@ -194,7 +197,7 @@ h1 .shine{
   box-shadow:0 20px 40px -15px rgba(0,0,0,.7);animation:bob 6s ease-in-out infinite;
 }
 .chip small{display:block;font-size:11.5px;color:var(--muted);font-weight:600}
-.chip .ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-family:Unbounded;font-weight:800;font-size:13px}
+.chip .ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:13px}
 .chip.c1{top:6%;left:-2%}
 .chip.c2{top:20%;right:-6%;animation-delay:-1.5s}
 .chip.c3{bottom:16%;left:-8%;animation-delay:-3s}
@@ -209,7 +212,7 @@ h1 .shine{
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
 }
 .track{display:flex;gap:56px;width:max-content;animation:scroll 32s linear infinite}
-.track span{font-family:Unbounded;font-weight:600;font-size:17px;color:var(--muted);display:flex;align-items:center;gap:56px;white-space:nowrap}
+.track span{font-family:var(--display);font-weight:600;font-size:17px;color:var(--muted);display:flex;align-items:center;gap:56px;white-space:nowrap}
 .track span::after{content:"✦";color:var(--v1)}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
@@ -219,7 +222,7 @@ section{padding:110px 0 0}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:42px;flex-wrap:wrap}
 .eyebrow{font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--v3);display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .eyebrow::before{content:"";width:28px;height:2px;background:var(--grad);border-radius:2px}
-h2{font-family:Unbounded;font-weight:800;font-size:clamp(30px,4.4vw,54px);line-height:1.06;letter-spacing:-.02em}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(30px,4.4vw,54px);line-height:1.06;letter-spacing:-.02em}
 h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sec-sub{color:var(--muted);max-width:420px;font-size:16px}
 
@@ -276,14 +279,14 @@ h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 }
 .tag.hot{background:linear-gradient(135deg,#f0abfc,#a855f7);color:#fff;border-color:transparent;box-shadow:0 6px 20px -6px rgba(232,121,249,.8)}
 .tag.free{background:rgba(74,222,128,.12);color:#86efac;border-color:rgba(74,222,128,.35)}
-.card h3{font-family:Unbounded;font-weight:600;font-size:18px;line-height:1.25;margin-bottom:8px}
+.card h3{font-family:var(--display);font-weight:600;font-size:18px;line-height:1.25;margin-bottom:8px}
 .card p{color:var(--muted);font-size:14.5px;margin-bottom:16px}
 .feats{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:22px}
 .feats li{display:flex;gap:9px;align-items:center;font-size:13.5px;color:#d6ccef;font-weight:600}
 .feats li svg{width:16px;height:16px;color:var(--v3);flex:none}
 .card-bot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:18px;border-top:1px dashed var(--line)}
-.price{font-family:Unbounded;font-weight:800;font-size:22px;line-height:1;white-space:nowrap}
-.price s{display:block;font-family:Manrope;font-size:13px;color:var(--dim);font-weight:600;margin-bottom:5px}
+.price{font-family:var(--display);font-weight:800;font-size:22px;line-height:1;white-space:nowrap}
+.price s{display:block;font-family:var(--body);font-size:13px;color:var(--dim);font-weight:600;margin-bottom:5px}
 .stock{font-size:12px;color:var(--ok);font-weight:700;display:flex;align-items:center;gap:6px;margin-top:6px}
 .stock::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
 .add{
@@ -311,7 +314,7 @@ h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 .feature h2{margin:16px 0 18px}
 .feature .lead{margin-bottom:28px}
 .zero{
-  font-family:Unbounded;font-weight:900;font-size:clamp(110px,16vw,210px);line-height:.85;text-align:center;
+  font-family:var(--display);font-weight:900;font-size:clamp(110px,16vw,210px);line-height:.85;text-align:center;
   background:linear-gradient(180deg,#fff,#c084fc 60%,rgba(124,58,237,.2));-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 0 50px rgba(192,132,252,.5));
 }
@@ -320,7 +323,7 @@ h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 .timer div{
   min-width:74px;padding:12px 10px;border-radius:16px;background:rgba(0,0,0,.35);border:1px solid var(--line-strong);text-align:center;
 }
-.timer b{display:block;font-family:Unbounded;font-size:26px;font-weight:800}
+.timer b{display:block;font-family:var(--display);font-size:26px;font-weight:800}
 .timer span{font-size:11.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
 
 /* ---------- why ---------- */
@@ -337,7 +340,7 @@ h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
   background:rgba(168,85,247,.14);border:1px solid var(--line-strong);
 }
 .why-ico svg{width:26px;height:26px;color:var(--v3)}
-.why-card h3{font-family:Unbounded;font-weight:600;font-size:17px;margin-bottom:10px}
+.why-card h3{font-family:var(--display);font-weight:600;font-size:17px;margin-bottom:10px}
 .why-card p{color:var(--muted);font-size:14.5px}
 
 /* ---------- steps ---------- */
@@ -349,10 +352,10 @@ h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 }
 .step::before{
   counter-increment:s;content:"0" counter(s);position:absolute;right:18px;top:6px;
-  font-family:Unbounded;font-weight:900;font-size:86px;line-height:1;
+  font-family:var(--display);font-weight:900;font-size:86px;line-height:1;
   background:linear-gradient(180deg,rgba(192,132,252,.35),transparent);-webkit-background-clip:text;background-clip:text;color:transparent;
 }
-.step h3{font-family:Unbounded;font-size:19px;font-weight:600;margin:60px 0 10px}
+.step h3{font-family:var(--display);font-size:19px;font-weight:600;margin:60px 0 10px}
 .step p{color:var(--muted);font-size:15px}
 
 /* ---------- reviews ---------- */
@@ -370,16 +373,16 @@ h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 /* ---------- faq ---------- */
 .faq{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
 .q{border-radius:18px;border:1px solid var(--line);background:var(--card);overflow:hidden;transition:border-color .3s}
-.q.open{border-color:var(--line-strong);background:rgba(40,24,74,.5)}
-.q button{width:100%;text-align:left;padding:22px 24px;font-weight:700;font-size:16.5px;display:flex;justify-content:space-between;gap:20px;align-items:center}
-.q button i{
+.q[open]{border-color:var(--line-strong);background:rgba(40,24,74,.5)}
+.q summary{list-style:none;cursor:pointer;padding:22px 24px;font-weight:700;font-size:16.5px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.q summary::-webkit-details-marker{display:none}
+.q summary i{
   width:32px;height:32px;border-radius:10px;flex:none;display:grid;place-items:center;background:rgba(168,85,247,.14);
   font-style:normal;font-size:20px;transition:transform .35s,background .35s;
 }
-.q.open button i{transform:rotate(45deg);background:var(--grad)}
-.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
-.q.open .a{grid-template-rows:1fr}
-.a > div{overflow:hidden}
+.q[open] summary i{transform:rotate(45deg);background:var(--grad)}
+.q[open] .a{animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(-6px)}}
 .a p{padding:0 24px 22px;color:var(--muted)}
 
 /* ---------- cta ---------- */
@@ -421,7 +424,7 @@ footer{margin-top:110px;border-top:1px solid var(--line);padding:50px 0 40px;bac
 }
 .drawer.open{transform:none}
 .d-head{display:flex;justify-content:space-between;align-items:center;padding:24px;border-bottom:1px solid var(--line)}
-.d-head h3{font-family:Unbounded;font-size:20px;font-weight:800}
+.d-head h3{font-family:var(--display);font-size:20px;font-weight:800}
 .d-body{flex:1;overflow:auto;padding:16px 24px;display:flex;flex-direction:column;gap:12px}
 .d-empty{margin:auto;text-align:center;color:var(--muted)}
 .d-empty div{font-size:54px;margin-bottom:10px;filter:grayscale(.2)}
@@ -447,7 +450,7 @@ footer{margin-top:110px;border-top:1px solid var(--line);padding:50px 0 40px;bac
 .promo button:hover{background:rgba(168,85,247,.15)}
 .sum{display:flex;justify-content:space-between;margin-bottom:8px;color:var(--muted);font-weight:600;font-size:14.5px}
 .sum.total{color:var(--text);font-size:18px;margin:14px 0 18px}
-.sum.total b{font-family:Unbounded;font-size:24px}
+.sum.total b{font-family:var(--display);font-size:24px}
 .sum.disc{color:var(--ok)}
 .drawer .btn{width:100%}
 
@@ -463,12 +466,13 @@ footer{margin-top:110px;border-top:1px solid var(--line);padding:50px 0 40px;bac
 .toast i{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;font-style:normal;flex:none}
 
 /* ---------- reveal ---------- */
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
-.reveal.in{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+html:not(.js) .burger,html:not(.js) #cartBtn{display:none}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
+  .js .reveal{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -558,9 +562,9 @@ footer{margin-top:110px;border-top:1px solid var(--line);padding:50px 0 40px;bac
         <a href="#offer" class="btn btn-ghost">ChatGPT за $0</a>
       </div>
       <div class="trust reveal">
-        <div><strong data-count="12400" data-suffix="+">0</strong><span>заказов выдано</span></div>
-        <div><strong data-count="98" data-suffix="%">0</strong><span>положительных отзывов</span></div>
-        <div><strong data-count="30" data-suffix=" сек">0</strong><span>среднее время выдачи</span></div>
+        <div><strong data-count="12400" data-suffix="+">12 400+</strong><span>заказов выдано</span></div>
+        <div><strong data-count="98" data-suffix="%">98%</strong><span>положительных отзывов</span></div>
+        <div><strong data-count="30" data-suffix=" сек">30 сек</strong><span>среднее время выдачи</span></div>
       </div>
     </div>
 
@@ -597,14 +601,136 @@ footer{margin-top:110px;border-top:1px solid var(--line);padding:50px 0 40px;bac
     </div>
 
     <div class="toolbar reveal">
-      <div class="tabs" id="tabs"></div>
+      <div class="tabs" id="tabs"><button class="tab active" data-cat="all">Все <small>12</small></button><button class="tab" data-cat="ai">Нейросети <small>4</small></button><button class="tab" data-cat="acc">Аккаунты <small>2</small></button><button class="tab" data-cat="subs">Подписки <small>2</small></button><button class="tab" data-cat="keys">Ключи <small>2</small></button><button class="tab" data-cat="game">Игры <small>2</small></button></div>
       <label class="search">
         <svg><use href="#i-search"/></svg>
         <input id="q" type="search" placeholder="Поиск товара…" autocomplete="off">
       </label>
     </div>
 
-    <div class="grid" id="grid"></div>
+    <!-- ТОВАРЫ: чтобы добавить товар, скопируй <article> и поменяй data-id, data-price, название и цену -->
+    <div class="grid" id="grid">
+      <article class="card reveal" data-cat="ai" data-id="gpt-zero" data-price="299">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#10b981,#065f46);--glow:#10b981"><svg><use href="#g-ai"/></svg></div><span class="tag hot">🔥 Хит</span></div>
+        <h3>ChatGPT Plus — оффер $0</h3>
+        <p>Аккаунт с активным предложением: первый месяц Plus за $0.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>Первый месяц Plus за $0</li><li><svg><use href="#i-check"/></svg>Личный аккаунт, смена почты</li><li><svg><use href="#i-check"/></svg>Гарантия 7 дней</li></ul>
+        <div class="card-bot">
+          <div><div class="price"><s>599 ₽</s>299 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="gpt-zero"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="ai" data-id="gpt-acc" data-price="149">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#34d399,#0f766e);--glow:#34d399"><svg><use href="#g-ai"/></svg></div><span class="tag free">В наличии</span></div>
+        <h3>ChatGPT — аккаунт</h3>
+        <p>Чистый готовый аккаунт для работы с ChatGPT.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>Мгновенная выдача</li><li><svg><use href="#i-check"/></svg>Можно сменить пароль</li><li><svg><use href="#i-check"/></svg>Гарантия на вход</li></ul>
+        <div class="card-bot">
+          <div><div class="price">149 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="gpt-acc"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="ai" data-id="gemini-pro" data-price="349">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#60a5fa,#7c3aed);--glow:#60a5fa"><svg><use href="#g-gem"/></svg></div><span class="tag">Новинка</span></div>
+        <h3>Gemini Pro</h3>
+        <p>Аккаунт с доступом к продвинутым моделям Gemini.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>Продвинутые модели</li><li><svg><use href="#i-check"/></svg>Генерация картинок и видео</li><li><svg><use href="#i-check"/></svg>Гарантия на весь срок</li></ul>
+        <div class="card-bot">
+          <div><div class="price"><s>490 ₽</s>349 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="gemini-pro"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="ai" data-id="gemini-acc" data-price="129">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#818cf8,#4338ca);--glow:#818cf8"><svg><use href="#g-brain"/></svg></div><span class="tag free">В наличии</span></div>
+        <h3>Gemini — аккаунт</h3>
+        <p>Аккаунт для работы с Gemini, готов к использованию.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>Мгновенная выдача</li><li><svg><use href="#i-check"/></svg>Полный доступ</li><li><svg><use href="#i-check"/></svg>Поддержка 24/7</li></ul>
+        <div class="card-bot">
+          <div><div class="price">129 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="gemini-acc"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="acc" data-id="g-fresh" data-price="49">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#f59e0b,#dc2626);--glow:#f59e0b"><svg><use href="#g-mail"/></svg></div><span class="tag free">В наличии</span></div>
+        <h3>Google аккаунт — новый</h3>
+        <p>Свежий Google аккаунт с полным доступом.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>Логин + пароль</li><li><svg><use href="#i-check"/></svg>Резервная почта</li><li><svg><use href="#i-check"/></svg>Гарантия на вход</li></ul>
+        <div class="card-bot">
+          <div><div class="price">49 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="g-fresh"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="acc" data-id="g-aged" data-price="129">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#fb923c,#be185d);--glow:#fb923c"><svg><use href="#g-user"/></svg></div><span class="tag hot">🔥 Хит</span></div>
+        <h3>Google аккаунт — с отлёжкой</h3>
+        <p>Аккаунт с историей 6+ месяцев — стабильнее и надёжнее.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>Отлёжка 6+ месяцев</li><li><svg><use href="#i-check"/></svg>Полный доступ</li><li><svg><use href="#i-check"/></svg>Гарантия 3 дня</li></ul>
+        <div class="card-bot">
+          <div><div class="price"><s>190 ₽</s>129 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="g-aged"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="subs" data-id="spotify" data-price="199">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#22c55e,#15803d);--glow:#22c55e"><svg><use href="#g-music"/></svg></div><span class="tag free">В наличии</span></div>
+        <h3>Spotify Premium — 1 мес</h3>
+        <p>Музыка без рекламы и с офлайн-режимом.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>На ваш аккаунт</li><li><svg><use href="#i-check"/></svg>Без рекламы</li><li><svg><use href="#i-check"/></svg>Гарантия на срок</li></ul>
+        <div class="card-bot">
+          <div><div class="price">199 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="spotify"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="subs" data-id="nitro" data-price="349">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#8b5cf6,#4c1d95);--glow:#8b5cf6"><svg><use href="#g-wave"/></svg></div><span class="tag free">В наличии</span></div>
+        <h3>Discord Nitro — 1 мес</h3>
+        <p>Бусты, HD-стримы, свои эмодзи и стикеры.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>2 буста сервера</li><li><svg><use href="#i-check"/></svg>Стримы в HD</li><li><svg><use href="#i-check"/></svg>Активация по ссылке</li></ul>
+        <div class="card-bot">
+          <div><div class="price"><s>450 ₽</s>349 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="nitro"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="keys" data-id="steam-rnd" data-price="99">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#3b82f6,#1e3a8a);--glow:#3b82f6"><svg><use href="#g-key"/></svg></div><span class="tag">Новинка</span></div>
+        <h3>Steam — случайный ключ</h3>
+        <p>Испытай удачу: ключ игры из списка от 500 ₽.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>Ключ в Steam</li><li><svg><use href="#i-check"/></svg>Шанс на ААА-игру</li><li><svg><use href="#i-check"/></svg>Мгновенно</li></ul>
+        <div class="card-bot">
+          <div><div class="price">99 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="steam-rnd"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="keys" data-id="win11" data-price="390">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#38bdf8,#2563eb);--glow:#38bdf8"><svg><use href="#g-win"/></svg></div><span class="tag free">В наличии</span></div>
+        <h3>Windows 11 Pro — ключ</h3>
+        <p>Лицензионный ключ активации, привязка к ПК.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>Бессрочная активация</li><li><svg><use href="#i-check"/></svg>Инструкция в комплекте</li><li><svg><use href="#i-check"/></svg>Гарантия</li></ul>
+        <div class="card-bot">
+          <div><div class="price"><s>690 ₽</s>390 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="win11"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="game" data-id="robux-800" data-price="690">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#ef4444,#7f1d1d);--glow:#ef4444"><svg><use href="#g-coin"/></svg></div><span class="tag free">В наличии</span></div>
+        <h3>Roblox — 800 Robux</h3>
+        <p>Пополнение Robux на ваш аккаунт.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>800 Robux</li><li><svg><use href="#i-check"/></svg>Код пополнения</li><li><svg><use href="#i-check"/></svg>Быстрая выдача</li></ul>
+        <div class="card-bot">
+          <div><div class="price">690 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="robux-800"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+      <article class="card reveal" data-cat="game" data-id="robux-2000" data-price="1590">
+        <div class="card-top"><div class="p-ico" style="background:linear-gradient(135deg,#f43f5e,#9f1239);--glow:#f43f5e"><svg><use href="#g-coin"/></svg></div><span class="tag hot">🔥 Хит</span></div>
+        <h3>Roblox — 2000 Robux</h3>
+        <p>Выгодный пакет Robux на ваш аккаунт.</p>
+        <ul class="feats"><li><svg><use href="#i-check"/></svg>2000 Robux</li><li><svg><use href="#i-check"/></svg>Код пополнения</li><li><svg><use href="#i-check"/></svg>Выгоднее на 15%</li></ul>
+        <div class="card-bot">
+          <div><div class="price"><s>1 890 ₽</s>1 590 ₽</div><div class="stock">В наличии</div></div>
+          <a class="add" href="https://t.me/" target="_blank" rel="noopener" data-add="robux-2000"><svg><use href="#i-plus"/></svg>В корзину</a>
+        </div>
+      </article>
+    </div>
     <div class="empty" id="empty">Ничего не нашлось 🔮 Попробуй другой запрос</div>
   </div>
 </section>
@@ -618,11 +744,11 @@ footer{margin-top:110px;border-top:1px solid var(--line);padding:50px 0 40px;bac
         <h2>ChatGPT Plus<br>с оффером <em>за $0</em></h2>
         <p class="lead">Готовый аккаунт с активным предложением — первый месяц Plus за ноль. Полный доступ к самым мощным моделям, генерации картинок и голосовому режиму.</p>
         <div class="timer" id="timer">
-          <div><b id="th">00</b><span>часов</span></div>
-          <div><b id="tm">00</b><span>минут</span></div>
-          <div><b id="ts">00</b><span>секунд</span></div>
+          <div><b id="th">23</b><span>часов</span></div>
+          <div><b id="tm">59</b><span>минут</span></div>
+          <div><b id="ts">59</b><span>секунд</span></div>
         </div>
-        <button class="btn btn-primary" data-add="gpt-zero">Забрать сейчас <svg><use href="#i-arrow"/></svg></button>
+        <a class="btn btn-primary" href="https://t.me/" target="_blank" rel="noopener" data-add="gpt-zero">Забрать сейчас <svg><use href="#i-arrow"/></svg></a>
       </div>
       <div class="zero">$0<small>ПЕРВЫЙ МЕСЯЦ</small></div>
     </div>
@@ -692,10 +818,10 @@ footer{margin-top:110px;border-top:1px solid var(--line);padding:50px 0 40px;bac
       </div>
     </div>
     <div class="faq" id="faqList">
-      <div class="q reveal"><button>Как быстро я получу товар?<i>+</i></button><div class="a"><div><p>Большинство товаров выдаются автоматически сразу после оплаты — обычно в течение 30 секунд.</p></div></div></div>
-      <div class="q reveal"><button>Что если товар не работает?<i>+</i></button><div class="a"><div><p>Напиши в поддержку — проверим и заменим товар или вернём деньги. Гарантия действует на все позиции.</p></div></div></div>
-      <div class="q reveal"><button>Какие способы оплаты?<i>+</i></button><div class="a"><div><p>Банковские карты, СБП и криптовалюта. Все платежи защищены.</p></div></div></div>
-      <div class="q reveal"><button>Что за оффер ChatGPT за $0?<i>+</i></button><div class="a"><div><p>Это аккаунт с активным пробным предложением: первый месяц подписки Plus стоит $0. Ты платишь только за сам аккаунт.</p></div></div></div>
+      <details class="q reveal"><summary>Как быстро я получу товар?<i>+</i></summary><div class="a"><p>Большинство товаров выдаются автоматически сразу после оплаты — обычно в течение 30 секунд.</p></div></details>
+      <details class="q reveal"><summary>Что если товар не работает?<i>+</i></summary><div class="a"><p>Напиши в поддержку — проверим и заменим товар или вернём деньги. Гарантия действует на все позиции.</p></div></details>
+      <details class="q reveal"><summary>Какие способы оплаты?<i>+</i></summary><div class="a"><p>Банковские карты, СБП и криптовалюта. Все платежи защищены.</p></div></details>
+      <details class="q reveal"><summary>Что за оффер ChatGPT за $0?<i>+</i></summary><div class="a"><p>Это аккаунт с активным пробным предложением: первый месяц подписки Plus стоит $0. Ты платишь только за сам аккаунт.</p></div></details>
     </div>
   </div>
 </section>
@@ -757,76 +883,25 @@ footer{margin-top:110px;border-top:1px solid var(--line);padding:50px 0 40px;bac
 const TELEGRAM = "https://t.me/";          // ссылка на ваш Telegram, например https://t.me/novastore_support
 const PROMOS   = { NOVA10: 10, NOVA20: 20 }; // промокод: скидка в %
 
-const CATS = [
-  { id:"all",  name:"Все" },
-  { id:"ai",   name:"Нейросети" },
-  { id:"acc",  name:"Аккаунты" },
-  { id:"subs", name:"Подписки" },
-  { id:"keys", name:"Ключи" },
-  { id:"game", name:"Игры" },
-];
-
-const PRODUCTS = [
-  { id:"gpt-zero", cat:"ai", name:"ChatGPT Plus — оффер $0", desc:"Аккаунт с активным предложением: первый месяц Plus за $0.",
-    feats:["Первый месяц Plus за $0","Личный аккаунт, смена почты","Гарантия 7 дней"], price:299, old:599, tag:"hot", glyph:"g-ai", c:["#10b981","#065f46"] },
-  { id:"gpt-acc", cat:"ai", name:"ChatGPT — аккаунт", desc:"Чистый готовый аккаунт для работы с ChatGPT.",
-    feats:["Мгновенная выдача","Можно сменить пароль","Гарантия на вход"], price:149, tag:"", glyph:"g-ai", c:["#34d399","#0f766e"] },
-  { id:"gemini-pro", cat:"ai", name:"Gemini Pro", desc:"Аккаунт с доступом к продвинутым моделям Gemini.",
-    feats:["Продвинутые модели","Генерация картинок и видео","Гарантия на весь срок"], price:349, old:490, tag:"new", glyph:"g-gem", c:["#60a5fa","#7c3aed"] },
-  { id:"gemini-acc", cat:"ai", name:"Gemini — аккаунт", desc:"Аккаунт для работы с Gemini, готов к использованию.",
-    feats:["Мгновенная выдача","Полный доступ","Поддержка 24/7"], price:129, tag:"", glyph:"g-brain", c:["#818cf8","#4338ca"] },
-  { id:"g-fresh", cat:"acc", name:"Google аккаунт — новый", desc:"Свежий Google аккаунт с полным доступом.",
-    feats:["Логин + пароль","Резервная почта","Гарантия на вход"], price:49, tag:"", glyph:"g-mail", c:["#f59e0b","#dc2626"] },
-  { id:"g-aged", cat:"acc", name:"Google аккаунт — с отлёжкой", desc:"Аккаунт с историей 6+ месяцев — стабильнее и надёжнее.",
-    feats:["Отлёжка 6+ месяцев","Полный доступ","Гарантия 3 дня"], price:129, old:190, tag:"hot", glyph:"g-user", c:["#fb923c","#be185d"] },
-  { id:"spotify", cat:"subs", name:"Spotify Premium — 1 мес", desc:"Музыка без рекламы и с офлайн-режимом.",
-    feats:["На ваш аккаунт","Без рекламы","Гарантия на срок"], price:199, tag:"", glyph:"g-music", c:["#22c55e","#15803d"] },
-  { id:"nitro", cat:"subs", name:"Discord Nitro — 1 мес", desc:"Бусты, HD-стримы, свои эмодзи и стикеры.",
-    feats:["2 буста сервера","Стримы в HD","Активация по ссылке"], price:349, old:450, tag:"", glyph:"g-wave", c:["#8b5cf6","#4c1d95"] },
-  { id:"steam-rnd", cat:"keys", name:"Steam — случайный ключ", desc:"Испытай удачу: ключ игры из списка от 500 ₽.",
-    feats:["Ключ в Steam","Шанс на ААА-игру","Мгновенно"], price:99, tag:"new", glyph:"g-key", c:["#3b82f6","#1e3a8a"] },
-  { id:"win11", cat:"keys", name:"Windows 11 Pro — ключ", desc:"Лицензионный ключ активации, привязка к ПК.",
-    feats:["Бессрочная активация","Инструкция в комплекте","Гарантия"], price:390, old:690, tag:"", glyph:"g-win", c:["#38bdf8","#2563eb"] },
-  { id:"robux-800", cat:"game", name:"Roblox — 800 Robux", desc:"Пополнение Robux на ваш аккаунт.",
-    feats:["800 Robux","Код пополнения","Быстрая выдача"], price:690, tag:"", glyph:"g-coin", c:["#ef4444","#7f1d1d"] },
-  { id:"robux-2000", cat:"game", name:"Roblox — 2000 Robux", desc:"Выгодный пакет Robux на ваш аккаунт.",
-    feats:["2000 Robux","Код пополнения","Выгоднее на 15%"], price:1590, old:1890, tag:"hot", glyph:"g-coin", c:["#f43f5e","#9f1239"] },
-];
+/* Товары берутся прямо из HTML-карточек в каталоге (#grid). */
 
 /* ========================================================= */
 const $ = s => document.querySelector(s);
 const fmt = n => n.toLocaleString("ru-RU") + " ₽";
-const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+const byId = {};
+document.querySelectorAll("#grid .card").forEach(c => {
+  byId[c.dataset.id] = { name:c.querySelector("h3").textContent, price:+c.dataset.price, ico:c.querySelector(".p-ico").outerHTML };
+  c.dataset.name = c.textContent.toLowerCase();
+});
+document.querySelectorAll('a[href="https://t.me/"]').forEach(a => a.href = TELEGRAM);
 const store = {
   get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
   set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
 };
 
-/* ---------- render catalog ---------- */
+/* ---------- catalog filter ---------- */
 let curCat = "all", query = "";
 const tabs = $("#tabs"), grid = $("#grid");
-tabs.innerHTML = CATS.map(c => {
-  const n = c.id === "all" ? PRODUCTS.length : PRODUCTS.filter(p => p.cat === c.id).length;
-  return `<button class="tab${c.id==="all"?" active":""}" data-cat="${c.id}">${c.name} <small>${n}</small></button>`;
-}).join("");
-
-const tagHtml = t => t==="hot" ? `<span class="tag hot">🔥 Хит</span>` : t==="new" ? `<span class="tag">Новинка</span>` : `<span class="tag free">В наличии</span>`;
-const icoHtml = p => `<div class="p-ico" style="background:linear-gradient(135deg,${p.c[0]},${p.c[1]});--glow:${p.c[0]}"><svg><use href="#${p.glyph}"/></svg></div>`;
-
-grid.innerHTML = PRODUCTS.map(p => `
-  <article class="card reveal" data-cat="${p.cat}" data-name="${(p.name+" "+p.desc).toLowerCase()}">
-    <div class="card-top">${icoHtml(p)}${tagHtml(p.tag)}</div>
-    <h3>${p.name}</h3>
-    <p>${p.desc}</p>
-    <ul class="feats">${p.feats.map(f=>`<li><svg><use href="#i-check"/></svg>${f}</li>`).join("")}</ul>
-    <div class="card-bot">
-      <div>
-        <div class="price">${p.old?`<s>${fmt(p.old)}</s>`:""}${fmt(p.price)}</div>
-        <div class="stock">В наличии</div>
-      </div>
-      <button class="add" data-add="${p.id}"><svg><use href="#i-plus"/></svg>В корзину</button>
-    </div>
-  </article>`).join("");
 
 function filter(){
   let shown = 0;
@@ -877,7 +952,7 @@ function renderCart(){
   const badge = $("#badge");
   badge.textContent = count; badge.classList.toggle("show", count>0);
   $("#dBody").innerHTML = ids.length ? ids.map(k => { const p = byId[k]; return `
-    <div class="line">${icoHtml(p)}
+    <div class="line">${p.ico}
       <div class="line-info"><b>${p.name}</b><span>${fmt(p.price)}</span></div>
       <div class="qty"><button data-dec="${k}">−</button><span>${cart[k]}</span><button data-inc="${k}">+</button></div>
     </div>`; }).join("")
@@ -900,7 +975,7 @@ function add(id, btn){
   }
 }
 document.addEventListener("click", e => {
-  const a = e.target.closest("[data-add]"); if (a) return add(a.dataset.add, a);
+  const a = e.target.closest("[data-add]"); if (a){ e.preventDefault(); return add(a.dataset.add, a); }
   const i = e.target.closest("[data-inc]"); if (i){ cart[i.dataset.inc]++; return renderCart(); }
   const d = e.target.closest("[data-dec]"); if (d){ const k = d.dataset.dec; if (--cart[k] <= 0) delete cart[k]; return renderCart(); }
 });
@@ -933,12 +1008,9 @@ function toast(msg){
 }
 
 /* ---------- faq ---------- */
-$("#faqList").addEventListener("click", e => {
-  const b = e.target.closest("button"); if (!b) return;
-  const q = b.parentElement, was = q.classList.contains("open");
-  document.querySelectorAll(".q").forEach(x => x.classList.remove("open"));
-  if (!was) q.classList.add("open");
-});
+document.querySelectorAll(".q").forEach(d => d.addEventListener("toggle", () => {
+  if (d.open) document.querySelectorAll(".q").forEach(x => { if (x !== d) x.open = false; });
+}));
 
 /* ---------- timer (до конца дня) ---------- */
 function tick(){
