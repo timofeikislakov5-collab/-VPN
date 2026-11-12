@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova Store — цифровые товары</title>
+<meta name="description" content="Nova Store — аккаунты, подписки, ключи и цифровые товары. Мгновенная выдача, гарантия, поддержка 24/7.">
+<meta name="theme-color" content="#07040f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07040f;
+  --bg2:#0d0819;
+  --card:rgba(22,14,40,.55);
+  --card-solid:#130c24;
+  --line:rgba(167,139,250,.14);
+  --line-strong:rgba(167,139,250,.35);
+  --text:#f3eeff;
+  --muted:#a69cc2;
+  --dim:#6f6690;
+  --v1:#a855f7;
+  --v2:#7c3aed;
+  --v3:#c084fc;
+  --pink:#e879f9;
+  --blue:#818cf8;
+  --ok:#4ade80;
+  --grad:linear-gradient(135deg,#c084fc 0%,#a855f7 35%,#7c3aed 70%,#6366f1 100%);
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Manrope,system-ui,sans-serif;
+  line-height:1.55;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:#a855f7;color:#fff}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+img,svg{display:block}
+
+/* ---------- background ---------- */
+#stars{position:fixed;inset:0;z-index:-3;width:100%;height:100%}
+.aurora{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.aurora span{
+  position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;
+  animation:float 22s ease-in-out infinite alternate;
+}
+.aurora span:nth-child(1){width:620px;height:620px;background:#7c3aed;top:-220px;left:-160px}
+.aurora span:nth-child(2){width:520px;height:520px;background:#c026d3;top:30%;right:-200px;animation-duration:28s;opacity:.35}
+.aurora span:nth-child(3){width:480px;height:480px;background:#4f46e5;bottom:-220px;left:25%;animation-duration:32s;opacity:.35}
+@keyframes float{
+  0%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(80px,60px) scale(1.15)}
+  100%{transform:translate(-60px,120px) scale(.95)}
+}
+.grain{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.cursor-glow{
+  position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle,rgba(168,85,247,.16),transparent 60%);
+  transform:translate(-50%,-50%);left:-999px;top:-999px;transition:opacity .3s;
+}
+
+.wrap{max-width:1220px;margin:0 auto;padding:0 24px}
+@media(max-width:600px){.wrap{padding:0 16px}}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
+  background:rgba(7,4,15,.55);
+  border-bottom:1px solid transparent;transition:border-color .3s,background .3s;
+}
+header.scrolled{border-bottom-color:var(--line);background:rgba(7,4,15,.8)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+.logo{display:flex;align-items:center;gap:12px;font-family:Unbounded;font-weight:800;font-size:19px;letter-spacing:.02em}
+.logo-mark{
+  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;position:relative;
+  background:var(--grad);box-shadow:0 0 0 1px rgba(255,255,255,.15) inset,0 10px 30px -8px rgba(168,85,247,.8);
+}
+.logo-mark svg{width:22px;height:22px}
+.logo b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.links{display:flex;gap:6px}
+.links a{padding:9px 16px;border-radius:999px;color:var(--muted);font-weight:600;font-size:14.5px;transition:.25s}
+.links a:hover{color:var(--text);background:rgba(168,85,247,.12)}
+.nav-right{display:flex;gap:10px;align-items:center}
+.icon-btn{
+  position:relative;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  border:1px solid var(--line);background:rgba(255,255,255,.03);transition:.25s;
+}
+.icon-btn:hover{border-color:var(--line-strong);background:rgba(168,85,247,.12);transform:translateY(-2px)}
+.icon-btn svg{width:21px;height:21px}
+.badge{
+  position:absolute;top:-6px;right:-6px;min-width:21px;height:21px;padding:0 6px;border-radius:999px;
+  background:var(--grad);font-size:11.5px;font-weight:800;display:grid;place-items:center;
+  box-shadow:0 0 0 3px var(--bg);transform:scale(0);transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.badge.show{transform:scale(1)}
+.badge.bump{animation:bump .45s}
+@keyframes bump{40%{transform:scale(1.45)}}
+.burger{display:none}
+@media(max-width:860px){.links{display:none}.burger{display:grid}}
+
+.mobile-menu{
+  position:fixed;inset:74px 0 auto 0;z-index:49;padding:12px 16px 20px;
+  background:rgba(10,6,20,.96);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);
+  display:flex;flex-direction:column;gap:4px;
+  transform:translateY(-12px);opacity:0;pointer-events:none;transition:.3s;
+}
+.mobile-menu.open{transform:none;opacity:1;pointer-events:auto}
+.mobile-menu a{padding:14px 16px;border-radius:14px;font-weight:700}
+.mobile-menu a:hover{background:rgba(168,85,247,.12)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 28px;border-radius:16px;font-weight:800;font-size:15.5px;letter-spacing:.01em;
+  transition:transform .25s,box-shadow .25s,background .25s;position:relative;overflow:hidden;white-space:nowrap;
+}
+.btn svg{width:19px;height:19px}
+.btn-primary{
+  background:var(--grad);color:#fff;
+  box-shadow:0 0 0 1px rgba(255,255,255,.18) inset,0 18px 40px -12px rgba(168,85,247,.9);
+}
+.btn-primary::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);
+  transform:translateX(-120%);transition:transform .8s;
+}
+.btn-primary:hover::after{transform:translateX(120%)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 24px 50px -12px rgba(168,85,247,1)}
+.btn-ghost{border:1px solid var(--line-strong);background:rgba(255,255,255,.03);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(168,85,247,.14);transform:translateY(-3px)}
+
+/* ---------- hero ---------- */
+.hero{padding:90px 0 60px;position:relative;overflow-x:clip}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:50px;align-items:center}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.hero{padding:50px 0 40px}}
+.pill{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;border-radius:999px;
+  border:1px solid var(--line-strong);background:rgba(168,85,247,.08);font-size:13.5px;font-weight:700;color:#e4d7ff;
+}
+.pill i{
+  font-style:normal;padding:4px 10px;border-radius:999px;background:var(--grad);font-size:11.5px;font-weight:800;letter-spacing:.06em;
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+h1{
+  font-family:Unbounded;font-weight:900;line-height:1.02;letter-spacing:-.025em;
+  font-size:clamp(42px,6vw,86px);margin:26px 0 22px;
+}
+h1 .shine{
+  background:linear-gradient(90deg,#fff 0%,#e9d5ff 20%,#c084fc 40%,#a855f7 55%,#f0abfc 70%,#fff 90%);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 6s linear infinite;
+  filter:drop-shadow(0 0 40px rgba(168,85,247,.45));
+}
+@keyframes shine{to{background-position:-200% center}}
+.lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:540px;margin-bottom:34px}
+.lead b{color:var(--text)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.trust{display:flex;gap:26px;margin-top:44px;flex-wrap:wrap}
+.trust div{display:flex;flex-direction:column}
+.trust strong{font-family:Unbounded;font-size:28px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.trust span{font-size:13.5px;color:var(--dim);font-weight:600}
+
+/* hero visual */
+.orbit{position:relative;aspect-ratio:1;max-width:500px;width:100%;margin:0 auto}
+@media(max-width:980px){.orbit{max-width:400px}}
+.ring{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(192,132,252,.25);animation:spin 40s linear infinite}
+.ring.r2{inset:14%;border-style:solid;border-color:rgba(192,132,252,.12);animation-duration:28s;animation-direction:reverse}
+.ring.r3{inset:28%;border-color:rgba(192,132,252,.2);animation-duration:18s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.core{
+  position:absolute;inset:34%;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 30% 30%,#e9d5ff,#a855f7 35%,#5b21b6 70%,#1e0b3d);
+  box-shadow:0 0 80px 10px rgba(168,85,247,.55),0 0 160px 40px rgba(124,58,237,.25),inset -18px -18px 40px rgba(0,0,0,.45);
+  animation:breathe 5s ease-in-out infinite;
+}
+.core svg{width:42%;height:42%;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))}
+@keyframes breathe{50%{transform:scale(1.05);box-shadow:0 0 110px 20px rgba(168,85,247,.65),0 0 200px 60px rgba(124,58,237,.3),inset -18px -18px 40px rgba(0,0,0,.45)}}
+.chip{
+  position:absolute;display:flex;align-items:center;gap:10px;padding:11px 15px 11px 11px;border-radius:16px;
+  background:rgba(19,12,36,.8);border:1px solid var(--line-strong);backdrop-filter:blur(12px);
+  font-weight:700;font-size:13.5px;white-space:nowrap;
+  box-shadow:0 20px 40px -15px rgba(0,0,0,.7);animation:bob 6s ease-in-out infinite;
+}
+.chip small{display:block;font-size:11.5px;color:var(--muted);font-weight:600}
+.chip .ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-family:Unbounded;font-weight:800;font-size:13px}
+.chip.c1{top:6%;left:-2%}
+.chip.c2{top:20%;right:-6%;animation-delay:-1.5s}
+.chip.c3{bottom:16%;left:-8%;animation-delay:-3s}
+.chip.c4{bottom:2%;right:4%;animation-delay:-4.5s}
+@media(max-width:520px){.chip{font-size:12px;padding:8px 11px 8px 8px}.chip .ico{width:28px;height:28px}.chip.c3{left:-2%}.chip.c2{right:-2%}}
+@keyframes bob{50%{transform:translateY(-14px)}}
+
+/* ---------- marquee ---------- */
+.marquee{
+  border-block:1px solid var(--line);background:rgba(168,85,247,.04);overflow:hidden;padding:20px 0;margin:30px 0 0;
+  mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+}
+.track{display:flex;gap:56px;width:max-content;animation:scroll 32s linear infinite}
+.track span{font-family:Unbounded;font-weight:600;font-size:17px;color:var(--muted);display:flex;align-items:center;gap:56px;white-space:nowrap}
+.track span::after{content:"✦";color:var(--v1)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{padding:110px 0 0}
+@media(max-width:700px){section{padding:80px 0 0}}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:42px;flex-wrap:wrap}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--v3);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--grad);border-radius:2px}
+h2{font-family:Unbounded;font-weight:800;font-size:clamp(30px,4.4vw,54px);line-height:1.06;letter-spacing:-.02em}
+h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec-sub{color:var(--muted);max-width:420px;font-size:16px}
+
+/* ---------- catalog ---------- */
+.toolbar{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:30px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+.tab{
+  padding:11px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);
+  font-weight:700;font-size:14px;color:var(--muted);transition:.25s;display:flex;gap:8px;align-items:center;
+}
+.tab:hover{color:var(--text);border-color:var(--line-strong)}
+.tab.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 10px 26px -10px rgba(168,85,247,.9)}
+.tab small{font-size:11.5px;opacity:.7}
+.search{
+  display:flex;align-items:center;gap:10px;padding:0 16px;height:46px;border-radius:999px;min-width:260px;
+  border:1px solid var(--line);background:rgba(255,255,255,.03);transition:.25s;
+}
+.search:focus-within{border-color:var(--v1);box-shadow:0 0 0 4px rgba(168,85,247,.15)}
+.search svg{width:18px;height:18px;color:var(--dim);flex:none}
+.search input{background:none;border:0;outline:0;color:var(--text);font:inherit;font-weight:600;width:100%}
+.search input::placeholder{color:var(--dim)}
+@media(max-width:600px){.search{min-width:0;width:100%}}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(285px,100%),1fr));gap:20px}
+.card{
+  position:relative;border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,rgba(30,19,56,.7),rgba(14,9,28,.75));
+  border:1px solid var(--line);transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s;
+  transform-style:preserve-3d;will-change:transform;isolation:isolate;
+}
+.card::before{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;z-index:-1;
+  background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(192,132,252,.7),transparent 45%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;
+}
+.card::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;
+  background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%),rgba(168,85,247,.14),transparent 60%);
+  opacity:0;transition:opacity .35s;
+}
+.card:hover{border-color:transparent;box-shadow:0 30px 60px -25px rgba(124,58,237,.6)}
+.card:hover::before,.card:hover::after{opacity:1}
+.card.hide{display:none}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px}
+.p-ico{
+  width:58px;height:58px;border-radius:17px;display:grid;place-items:center;position:relative;
+  box-shadow:0 0 0 1px rgba(255,255,255,.14) inset,0 14px 30px -12px var(--glow,rgba(168,85,247,.9));
+}
+.p-ico svg{width:28px;height:28px;color:#fff}
+.tag{
+  font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:6px 11px;border-radius:999px;
+  background:rgba(168,85,247,.14);color:#e9d5ff;border:1px solid var(--line-strong);
+}
+.tag.hot{background:linear-gradient(135deg,#f0abfc,#a855f7);color:#fff;border-color:transparent;box-shadow:0 6px 20px -6px rgba(232,121,249,.8)}
+.tag.free{background:rgba(74,222,128,.12);color:#86efac;border-color:rgba(74,222,128,.35)}
+.card h3{font-family:Unbounded;font-weight:600;font-size:18px;line-height:1.25;margin-bottom:8px}
+.card p{color:var(--muted);font-size:14.5px;margin-bottom:16px}
+.feats{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:22px}
+.feats li{display:flex;gap:9px;align-items:center;font-size:13.5px;color:#d6ccef;font-weight:600}
+.feats li svg{width:16px;height:16px;color:var(--v3);flex:none}
+.card-bot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:18px;border-top:1px dashed var(--line)}
+.price{font-family:Unbounded;font-weight:800;font-size:22px;line-height:1;white-space:nowrap}
+.price s{display:block;font-family:Manrope;font-size:13px;color:var(--dim);font-weight:600;margin-bottom:5px}
+.stock{font-size:12px;color:var(--ok);font-weight:700;display:flex;align-items:center;gap:6px;margin-top:6px}
+.stock::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.add{
+  height:48px;padding:0 18px;border-radius:14px;background:var(--grad);font-weight:800;font-size:14px;display:flex;align-items:center;gap:8px;white-space:nowrap;flex:none;
+  box-shadow:0 10px 24px -10px rgba(168,85,247,.9);transition:.25s;
+}
+.add svg{width:18px;height:18px}
+.add:hover{transform:translateY(-2px) scale(1.03)}
+.add.done{background:#22c55e;box-shadow:0 10px 24px -10px rgba(34,197,94,.9)}
+.empty{display:none;text-align:center;padding:60px 20px;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius)}
+.empty.show{display:block}
+
+/* ---------- featured ---------- */
+.feature{
+  position:relative;border-radius:32px;overflow:hidden;padding:56px;
+  background:radial-gradient(120% 140% at 0% 0%,#4c1d95 0%,#1e0b3d 45%,#0b0618 100%);
+  border:1px solid var(--line-strong);display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;
+}
+@media(max-width:900px){.feature{grid-template-columns:1fr;padding:34px 22px}}
+.feature::before{
+  content:"";position:absolute;width:600px;height:600px;right:-200px;top:-260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,121,249,.45),transparent 60%);filter:blur(20px);
+}
+.feature > *{position:relative}
+.feature h2{margin:16px 0 18px}
+.feature .lead{margin-bottom:28px}
+.zero{
+  font-family:Unbounded;font-weight:900;font-size:clamp(110px,16vw,210px);line-height:.85;text-align:center;
+  background:linear-gradient(180deg,#fff,#c084fc 60%,rgba(124,58,237,.2));-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 50px rgba(192,132,252,.5));
+}
+.zero small{display:block;font-size:.16em;letter-spacing:.3em;font-weight:600;margin-top:16px;-webkit-text-fill-color:#e9d5ff}
+.timer{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
+.timer div{
+  min-width:74px;padding:12px 10px;border-radius:16px;background:rgba(0,0,0,.35);border:1px solid var(--line-strong);text-align:center;
+}
+.timer b{display:block;font-family:Unbounded;font-size:26px;font-weight:800}
+.timer span{font-size:11.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+
+/* ---------- why ---------- */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:980px){.why{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.why{grid-template-columns:1fr}}
+.why-card{
+  padding:28px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);
+  backdrop-filter:blur(10px);transition:.35s;
+}
+.why-card:hover{transform:translateY(-6px);border-color:var(--line-strong);background:rgba(40,24,74,.55)}
+.why-ico{
+  width:54px;height:54px;border-radius:16px;display:grid;place-items:center;margin-bottom:22px;
+  background:rgba(168,85,247,.14);border:1px solid var(--line-strong);
+}
+.why-ico svg{width:26px;height:26px;color:var(--v3)}
+.why-card h3{font-family:Unbounded;font-weight:600;font-size:17px;margin-bottom:10px}
+.why-card p{color:var(--muted);font-size:14.5px}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+@media(max-width:860px){.steps{grid-template-columns:1fr}}
+.step{
+  position:relative;padding:34px 28px 30px;border-radius:var(--radius);border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(168,85,247,.08),transparent);overflow:hidden;
+}
+.step::before{
+  counter-increment:s;content:"0" counter(s);position:absolute;right:18px;top:6px;
+  font-family:Unbounded;font-weight:900;font-size:86px;line-height:1;
+  background:linear-gradient(180deg,rgba(192,132,252,.35),transparent);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.step h3{font-family:Unbounded;font-size:19px;font-weight:600;margin:60px 0 10px}
+.step p{color:var(--muted);font-size:15px}
+
+/* ---------- reviews ---------- */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:980px){.reviews{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.reviews{grid-template-columns:1fr}}
+.review{padding:26px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);backdrop-filter:blur(10px)}
+.stars{color:#facc15;letter-spacing:3px;margin-bottom:14px;font-size:15px}
+.review p{color:#ddd3f5;font-size:15px;margin-bottom:20px}
+.who{display:flex;align-items:center;gap:12px}
+.ava{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:var(--grad)}
+.who b{display:block;font-size:14.5px}
+.who span{font-size:12.5px;color:var(--dim);font-weight:600}
+
+/* ---------- faq ---------- */
+.faq{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.q{border-radius:18px;border:1px solid var(--line);background:var(--card);overflow:hidden;transition:border-color .3s}
+.q.open{border-color:var(--line-strong);background:rgba(40,24,74,.5)}
+.q button{width:100%;text-align:left;padding:22px 24px;font-weight:700;font-size:16.5px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.q button i{
+  width:32px;height:32px;border-radius:10px;flex:none;display:grid;place-items:center;background:rgba(168,85,247,.14);
+  font-style:normal;font-size:20px;transition:transform .35s,background .35s;
+}
+.q.open button i{transform:rotate(45deg);background:var(--grad)}
+.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.q.open .a{grid-template-rows:1fr}
+.a > div{overflow:hidden}
+.a p{padding:0 24px 22px;color:var(--muted)}
+
+/* ---------- cta ---------- */
+.cta{
+  text-align:center;padding:80px 30px;border-radius:36px;position:relative;overflow:hidden;
+  background:var(--grad);box-shadow:0 40px 100px -40px rgba(168,85,247,.9);
+}
+.cta::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.25),transparent 40%),
+    radial-gradient(circle at 80% 90%,rgba(0,0,0,.35),transparent 50%);
+}
+.cta > *{position:relative}
+.cta h2{font-size:clamp(30px,5vw,60px);margin-bottom:16px}
+.cta p{font-size:17px;opacity:.9;max-width:520px;margin:0 auto 32px}
+.btn-white{background:#fff;color:#4c1d95;box-shadow:0 20px 40px -15px rgba(0,0,0,.5)}
+.btn-white:hover{transform:translateY(-3px)}
+
+/* ---------- footer ---------- */
+footer{margin-top:110px;border-top:1px solid var(--line);padding:50px 0 40px;background:rgba(0,0,0,.25)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+@media(max-width:800px){.foot{grid-template-columns:1fr 1fr}}
+.foot h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot ul a{color:var(--muted);font-weight:600;font-size:14.5px;transition:.2s}
+.foot ul a:hover{color:var(--v3)}
+.foot p{color:var(--muted);font-size:14.5px;margin-top:16px;max-width:300px}
+.copy{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--dim)}
+
+/* ---------- cart drawer ---------- */
+.overlay{position:fixed;inset:0;background:rgba(3,1,8,.65);backdrop-filter:blur(4px);z-index:90;opacity:0;pointer-events:none;transition:.35s}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);z-index:100;
+  background:linear-gradient(180deg,#140c28,#0a0616);border-left:1px solid var(--line-strong);
+  transform:translateX(105%);transition:transform .45s cubic-bezier(.2,.8,.2,1);
+  display:flex;flex-direction:column;box-shadow:-40px 0 80px -20px rgba(0,0,0,.8);
+}
+.drawer.open{transform:none}
+.d-head{display:flex;justify-content:space-between;align-items:center;padding:24px;border-bottom:1px solid var(--line)}
+.d-head h3{font-family:Unbounded;font-size:20px;font-weight:800}
+.d-body{flex:1;overflow:auto;padding:16px 24px;display:flex;flex-direction:column;gap:12px}
+.d-empty{margin:auto;text-align:center;color:var(--muted)}
+.d-empty div{font-size:54px;margin-bottom:10px;filter:grayscale(.2)}
+.line{display:flex;gap:14px;align-items:center;padding:14px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--line);animation:in .35s}
+@keyframes in{from{opacity:0;transform:translateX(20px)}}
+.line .p-ico{width:46px;height:46px;border-radius:13px;flex:none}
+.line .p-ico svg{width:22px;height:22px}
+.line-info{flex:1;min-width:0}
+.line-info b{display:block;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.line-info span{font-size:13px;color:var(--v3);font-weight:700}
+.qty{display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.3);border-radius:10px;padding:3px}
+.qty button{width:28px;height:28px;border-radius:8px;font-weight:800;transition:.2s}
+.qty button:hover{background:rgba(168,85,247,.25)}
+.qty span{min-width:20px;text-align:center;font-weight:800;font-size:14px}
+.d-foot{padding:22px 24px 26px;border-top:1px solid var(--line);background:rgba(0,0,0,.25)}
+.promo{display:flex;gap:8px;margin-bottom:18px}
+.promo input{
+  flex:1;height:46px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);
+  padding:0 14px;color:var(--text);font:inherit;font-weight:700;outline:0;text-transform:uppercase;min-width:0;
+}
+.promo input:focus{border-color:var(--v1)}
+.promo button{padding:0 16px;border-radius:12px;border:1px solid var(--line-strong);font-weight:700;font-size:14px}
+.promo button:hover{background:rgba(168,85,247,.15)}
+.sum{display:flex;justify-content:space-between;margin-bottom:8px;color:var(--muted);font-weight:600;font-size:14.5px}
+.sum.total{color:var(--text);font-size:18px;margin:14px 0 18px}
+.sum.total b{font-family:Unbounded;font-size:24px}
+.sum.disc{color:var(--ok)}
+.drawer .btn{width:100%}
+
+/* ---------- toast ---------- */
+.toast{
+  position:fixed;left:50%;bottom:28px;z-index:120;transform:translate(-50%,140%);
+  display:flex;align-items:center;gap:12px;padding:14px 20px 14px 14px;border-radius:16px;
+  background:rgba(22,14,40,.95);border:1px solid var(--line-strong);backdrop-filter:blur(12px);
+  font-weight:700;font-size:14.5px;box-shadow:0 20px 50px -10px rgba(0,0,0,.8);transition:transform .45s cubic-bezier(.34,1.56,.64,1);
+  max-width:calc(100% - 32px);
+}
+.toast.show{transform:translate(-50%,0)}
+.toast i{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;font-style:normal;flex:none}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<div class="aurora"><span></span><span></span><span></span></div>
+<div class="grain"></div>
+<div class="cursor-glow" id="glow"></div>
+
+<!-- SVG sprite -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-nova" viewBox="0 0 24 24"><path fill="#fff" d="M12 1.5l2.4 7.1 7.1 2.4-7.1 2.4-2.4 7.1-2.4-7.1L2.5 11l7.1-2.4z"/><circle cx="19" cy="4.5" r="1.6" fill="#fff" opacity=".8"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+    <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6 1.1 12c-1.1-.3-1.1-1 .2-1.5L20.5 3c.9-.3 1.7.2 1.4 1.3z"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.5 4 5.5v6c0 5 3.4 9.1 8 10.5 4.6-1.4 8-5.5 8-10.5v-6z"/><path d="m8.5 12 2.5 2.5 4.5-5" stroke-linecap="round"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke-linecap="round" stroke-width="3"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/></symbol>
+    <!-- product glyphs -->
+    <symbol id="g-ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 3c1 4.5 4.5 8 9 9-4.5 1-8 4.5-9 9-1-4.5-4.5-8-9-9 4.5-1 8-4.5 9-9z"/></symbol>
+    <symbol id="g-brain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></symbol>
+    <symbol id="g-gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M12 21 8 9l4-6 4 6z"/></symbol>
+    <symbol id="g-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+    <symbol id="g-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></symbol>
+    <symbol id="g-game" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10a5 5 0 0 1 5 5v1a4 4 0 0 1-7 2.6L14 14h-4l-1 1.6A4 4 0 0 1 2 13v-1a5 5 0 0 1 5-5z"/><path d="M7 10v4M5 12h4M16 11h.01M18 13h.01" stroke-width="2.4"/></symbol>
+    <symbol id="g-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="5"/><path d="m11.5 11.5 9-9M17 6l3 3M14.5 8.5l2 2"/></symbol>
+    <symbol id="g-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+    <symbol id="g-win" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></symbol>
+    <symbol id="g-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="4" width="16" height="16" rx="3" transform="rotate(12 12 12)"/><rect x="9" y="9" width="6" height="6" rx="1" transform="rotate(12 12 12)"/></symbol>
+    <symbol id="g-wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 7v10M21 12h0"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="logo">
+      <span class="logo-mark"><svg><use href="#i-nova"/></svg></span>
+      <span>NOVA <b>STORE</b></span>
+    </a>
+    <nav class="links">
+      <a href="#catalog">Каталог</a>
+      <a href="#offer">Акция</a>
+      <a href="#how">Как купить</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <button class="icon-btn" id="cartBtn" aria-label="Корзина">
+        <svg><use href="#i-cart"/></svg>
+        <span class="badge" id="badge">0</span>
+      </button>
+      <button class="icon-btn burger" id="burger" aria-label="Меню"><svg><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mmenu">
+  <a href="#catalog">Каталог</a>
+  <a href="#offer">Акция</a>
+  <a href="#how">Как купить</a>
+  <a href="#reviews">Отзывы</a>
+  <a href="#faq">FAQ</a>
+</div>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="padding-top:80px">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill reveal"><i>NEW</i><span class="dot"></span> Мгновенная выдача 24/7</span>
+      <h1 class="reveal">Цифровой<br>мир в&nbsp;<span class="shine">один клик</span></h1>
+      <p class="lead reveal">
+        <b>Nova Store</b> — аккаунты, подписки и ключи по лучшим ценам. Нейросети, сервисы, игры —
+        выдача сразу после оплаты, гарантия на каждый товар и живая поддержка.
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#catalog" class="btn btn-primary">Открыть каталог <svg><use href="#i-arrow"/></svg></a>
+        <a href="#offer" class="btn btn-ghost">ChatGPT за $0</a>
+      </div>
+      <div class="trust reveal">
+        <div><strong data-count="12400" data-suffix="+">0</strong><span>заказов выдано</span></div>
+        <div><strong data-count="98" data-suffix="%">0</strong><span>положительных отзывов</span></div>
+        <div><strong data-count="30" data-suffix=" сек">0</strong><span>среднее время выдачи</span></div>
+      </div>
+    </div>
+
+    <div class="orbit reveal">
+      <div class="ring"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+      <div class="core"><svg><use href="#i-nova"/></svg></div>
+
+      <div class="chip c1"><span class="ico" style="background:linear-gradient(135deg,#10b981,#047857)"><svg width="18" height="18" style="color:#fff"><use href="#g-ai"/></svg></span><div>ChatGPT Plus<small>оффер за $0</small></div></div>
+      <div class="chip c2"><span class="ico" style="background:linear-gradient(135deg,#60a5fa,#a855f7)"><svg width="18" height="18" style="color:#fff"><use href="#g-gem"/></svg></span><div>Gemini<small>Pro-доступ</small></div></div>
+      <div class="chip c3"><span class="ico" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"><svg width="18" height="18" style="color:#fff"><use href="#g-mail"/></svg></span><div>Google<small>аккаунты</small></div></div>
+      <div class="chip c4"><span class="ico" style="background:linear-gradient(135deg,#ec4899,#7c3aed)"><svg width="18" height="18" style="color:#fff"><use href="#g-key"/></svg></span><div>Ключи<small>игры и софт</small></div></div>
+    </div>
+  </div>
+
+  <div class="marquee">
+    <div class="track">
+      <span>ChatGPT Plus</span><span>Gemini</span><span>Google аккаунты</span><span>Robux</span><span>Steam ключи</span><span>Spotify Premium</span><span>Discord Nitro</span><span>Windows ключи</span>
+      <span>ChatGPT Plus</span><span>Gemini</span><span>Google аккаунты</span><span>Robux</span><span>Steam ключи</span><span>Spotify Premium</span><span>Discord Nitro</span><span>Windows ключи</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATALOG ============ -->
+<section id="catalog">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Каталог</div>
+        <h2>Всё цифровое —<br><em>в одном месте</em></h2>
+      </div>
+      <p class="sec-sub">Выбирай категорию, кидай в корзину и получай товар моментально. Гарантия на всё.</p>
+    </div>
+
+    <div class="toolbar reveal">
+      <div class="tabs" id="tabs"></div>
+      <label class="search">
+        <svg><use href="#i-search"/></svg>
+        <input id="q" type="search" placeholder="Поиск товара…" autocomplete="off">
+      </label>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty">Ничего не нашлось 🔮 Попробуй другой запрос</div>
+  </div>
+</section>
+
+<!-- ============ OFFER ============ -->
+<section id="offer">
+  <div class="wrap">
+    <div class="feature reveal">
+      <div>
+        <span class="pill"><i>ХИТ</i> Предложение недели</span>
+        <h2>ChatGPT Plus<br>с оффером <em>за $0</em></h2>
+        <p class="lead">Готовый аккаунт с активным предложением — первый месяц Plus за ноль. Полный доступ к самым мощным моделям, генерации картинок и голосовому режиму.</p>
+        <div class="timer" id="timer">
+          <div><b id="th">00</b><span>часов</span></div>
+          <div><b id="tm">00</b><span>минут</span></div>
+          <div><b id="ts">00</b><span>секунд</span></div>
+        </div>
+        <button class="btn btn-primary" data-add="gpt-zero">Забрать сейчас <svg><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="zero">$0<small>ПЕРВЫЙ МЕСЯЦ</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Почему мы</div>
+        <h2>Сделано, чтобы<br><em>просто работало</em></h2>
+      </div>
+    </div>
+    <div class="why">
+      <div class="why-card reveal"><div class="why-ico"><svg><use href="#i-bolt"/></svg></div><h3>Моментально</h3><p>Автовыдача сразу после оплаты — без ожидания и лишних вопросов.</p></div>
+      <div class="why-card reveal"><div class="why-ico"><svg><use href="#i-shield"/></svg></div><h3>Гарантия</h3><p>Если что-то не так — заменим товар или вернём деньги. Без споров.</p></div>
+      <div class="why-card reveal"><div class="why-ico"><svg><use href="#i-tag"/></svg></div><h3>Лучшие цены</h3><p>Работаем напрямую — поэтому дешевле, чем у перекупов.</p></div>
+      <div class="why-card reveal"><div class="why-ico"><svg><use href="#i-chat"/></svg></div><h3>Поддержка 24/7</h3><p>Живые люди в Telegram, отвечаем в среднем за 5 минут.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Как купить</div>
+        <h2>Три шага<br><em>до покупки</em></h2>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Выбери товар</h3><p>Найди нужное в каталоге и добавь в корзину. Можно сразу несколько.</p></div>
+      <div class="step reveal"><h3>Оплати</h3><p>Карта, СБП или крипта — как удобно. Промокоды применяются в корзине.</p></div>
+      <div class="step reveal"><h3>Получи</h3><p>Данные придут моментально. Если нужна помощь — мы на связи.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Отзывы</div>
+        <h2>Нам <em>доверяют</em></h2>
+      </div>
+      <p class="sec-sub">Тысячи довольных покупателей. Вот что говорят некоторые из них.</p>
+    </div>
+    <div class="reviews">
+      <div class="review reveal"><div class="stars">★★★★★</div><p>Взял ChatGPT с оффером — всё пришло за минуту, работает отлично. Буду брать ещё.</p><div class="who"><div class="ava">A</div><div><b>Артём</b><span>ChatGPT Plus</span></div></div></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><p>Самые адекватные цены на Google аккаунты, что я видел. Поддержка быстро помогла со входом.</p><div class="who"><div class="ava">М</div><div><b>Максим</b><span>Google аккаунт</span></div></div></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><p>Gemini Pro купила для учёбы — супер. И сайт красивый, приятно пользоваться 💜</p><div class="who"><div class="ava">Д</div><div><b>Даша</b><span>Gemini</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal" style="justify-content:center;text-align:center">
+      <div>
+        <div class="eyebrow" style="justify-content:center">FAQ</div>
+        <h2>Частые <em>вопросы</em></h2>
+      </div>
+    </div>
+    <div class="faq" id="faqList">
+      <div class="q reveal"><button>Как быстро я получу товар?<i>+</i></button><div class="a"><div><p>Большинство товаров выдаются автоматически сразу после оплаты — обычно в течение 30 секунд.</p></div></div></div>
+      <div class="q reveal"><button>Что если товар не работает?<i>+</i></button><div class="a"><div><p>Напиши в поддержку — проверим и заменим товар или вернём деньги. Гарантия действует на все позиции.</p></div></div></div>
+      <div class="q reveal"><button>Какие способы оплаты?<i>+</i></button><div class="a"><div><p>Банковские карты, СБП и криптовалюта. Все платежи защищены.</p></div></div></div>
+      <div class="q reveal"><button>Что за оффер ChatGPT за $0?<i>+</i></button><div class="a"><div><p>Это аккаунт с активным пробным предложением: первый месяц подписки Plus стоит $0. Ты платишь только за сам аккаунт.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section>
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Остались вопросы?</h2>
+      <p>Напиши нам в Telegram — подскажем, подберём и поможем с покупкой.</p>
+      <a href="https://t.me/" target="_blank" rel="noopener" class="btn btn-white"><svg><use href="#i-tg"/></svg> Написать в Telegram</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="logo"><span class="logo-mark"><svg><use href="#i-nova"/></svg></span><span>NOVA <b>STORE</b></span></a>
+        <p>Магазин цифровых товаров: аккаунты, подписки и ключи с мгновенной выдачей.</p>
+      </div>
+      <div><h4>Магазин</h4><ul><li><a href="#catalog">Каталог</a></li><li><a href="#offer">Акции</a></li><li><a href="#reviews">Отзывы</a></li></ul></div>
+      <div><h4>Помощь</h4><ul><li><a href="#how">Как купить</a></li><li><a href="#faq">FAQ</a></li><li><a href="https://t.me/" target="_blank" rel="noopener">Поддержка</a></li></ul></div>
+      <div><h4>Категории</h4><ul><li><a href="#catalog" data-jump="ai">Нейросети</a></li><li><a href="#catalog" data-jump="acc">Аккаунты</a></li><li><a href="#catalog" data-jump="keys">Ключи</a></li></ul></div>
+    </div>
+    <div class="copy"><span>© <span id="yr"></span> Nova Store. Все права защищены.</span><span>Сделано с 💜</span></div>
+  </div>
+</footer>
+
+<!-- ============ CART ============ -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Корзина">
+  <div class="d-head">
+    <h3>Корзина</h3>
+    <button class="icon-btn" id="closeCart" aria-label="Закрыть"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <div class="d-body" id="dBody"></div>
+  <div class="d-foot">
+    <div class="promo">
+      <input id="promo" placeholder="Промокод" maxlength="16">
+      <button id="applyPromo">Применить</button>
+    </div>
+    <div class="sum"><span>Товары</span><span id="sSub">0 ₽</span></div>
+    <div class="sum disc" id="discRow" style="display:none"><span>Скидка</span><span id="sDisc">0 ₽</span></div>
+    <div class="sum total"><span>Итого</span><b id="sTotal">0 ₽</b></div>
+    <button class="btn btn-primary" id="checkout"><svg><use href="#i-tg"/></svg> Оформить заказ</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast"><i>✓</i><span id="toastText"></span></div>
+
+<script>
+/* =========================================================
+   НАСТРОЙКИ — меняй тут
+   ========================================================= */
+const TELEGRAM = "https://t.me/";          // ссылка на ваш Telegram, например https://t.me/novastore_support
+const PROMOS   = { NOVA10: 10, NOVA20: 20 }; // промокод: скидка в %
+
+const CATS = [
+  { id:"all",  name:"Все" },
+  { id:"ai",   name:"Нейросети" },
+  { id:"acc",  name:"Аккаунты" },
+  { id:"subs", name:"Подписки" },
+  { id:"keys", name:"Ключи" },
+  { id:"game", name:"Игры" },
+];
+
+const PRODUCTS = [
+  { id:"gpt-zero", cat:"ai", name:"ChatGPT Plus — оффер $0", desc:"Аккаунт с активным предложением: первый месяц Plus за $0.",
+    feats:["Первый месяц Plus за $0","Личный аккаунт, смена почты","Гарантия 7 дней"], price:299, old:599, tag:"hot", glyph:"g-ai", c:["#10b981","#065f46"] },
+  { id:"gpt-acc", cat:"ai", name:"ChatGPT — аккаунт", desc:"Чистый готовый аккаунт для работы с ChatGPT.",
+    feats:["Мгновенная выдача","Можно сменить пароль","Гарантия на вход"], price:149, tag:"", glyph:"g-ai", c:["#34d399","#0f766e"] },
+  { id:"gemini-pro", cat:"ai", name:"Gemini Pro", desc:"Аккаунт с доступом к продвинутым моделям Gemini.",
+    feats:["Продвинутые модели","Генерация картинок и видео","Гарантия на весь срок"], price:349, old:490, tag:"new", glyph:"g-gem", c:["#60a5fa","#7c3aed"] },
+  { id:"gemini-acc", cat:"ai", name:"Gemini — аккаунт", desc:"Аккаунт для работы с Gemini, готов к использованию.",
+    feats:["Мгновенная выдача","Полный доступ","Поддержка 24/7"], price:129, tag:"", glyph:"g-brain", c:["#818cf8","#4338ca"] },
+  { id:"g-fresh", cat:"acc", name:"Google аккаунт — новый", desc:"Свежий Google аккаунт с полным доступом.",
+    feats:["Логин + пароль","Резервная почта","Гарантия на вход"], price:49, tag:"", glyph:"g-mail", c:["#f59e0b","#dc2626"] },
+  { id:"g-aged", cat:"acc", name:"Google аккаунт — с отлёжкой", desc:"Аккаунт с историей 6+ месяцев — стабильнее и надёжнее.",
+    feats:["Отлёжка 6+ месяцев","Полный доступ","Гарантия 3 дня"], price:129, old:190, tag:"hot", glyph:"g-user", c:["#fb923c","#be185d"] },
+  { id:"spotify", cat:"subs", name:"Spotify Premium — 1 мес", desc:"Музыка без рекламы и с офлайн-режимом.",
+    feats:["На ваш аккаунт","Без рекламы","Гарантия на срок"], price:199, tag:"", glyph:"g-music", c:["#22c55e","#15803d"] },
+  { id:"nitro", cat:"subs", name:"Discord Nitro — 1 мес", desc:"Бусты, HD-стримы, свои эмодзи и стикеры.",
+    feats:["2 буста сервера","Стримы в HD","Активация по ссылке"], price:349, old:450, tag:"", glyph:"g-wave", c:["#8b5cf6","#4c1d95"] },
+  { id:"steam-rnd", cat:"keys", name:"Steam — случайный ключ", desc:"Испытай удачу: ключ игры из списка от 500 ₽.",
+    feats:["Ключ в Steam","Шанс на ААА-игру","Мгновенно"], price:99, tag:"new", glyph:"g-key", c:["#3b82f6","#1e3a8a"] },
+  { id:"win11", cat:"keys", name:"Windows 11 Pro — ключ", desc:"Лицензионный ключ активации, привязка к ПК.",
+    feats:["Бессрочная активация","Инструкция в комплекте","Гарантия"], price:390, old:690, tag:"", glyph:"g-win", c:["#38bdf8","#2563eb"] },
+  { id:"robux-800", cat:"game", name:"Roblox — 800 Robux", desc:"Пополнение Robux на ваш аккаунт.",
+    feats:["800 Robux","Код пополнения","Быстрая выдача"], price:690, tag:"", glyph:"g-coin", c:["#ef4444","#7f1d1d"] },
+  { id:"robux-2000", cat:"game", name:"Roblox — 2000 Robux", desc:"Выгодный пакет Robux на ваш аккаунт.",
+    feats:["2000 Robux","Код пополнения","Выгоднее на 15%"], price:1590, old:1890, tag:"hot", glyph:"g-coin", c:["#f43f5e","#9f1239"] },
+];
+
+/* ========================================================= */
+const $ = s => document.querySelector(s);
+const fmt = n => n.toLocaleString("ru-RU") + " ₽";
+const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+const store = {
+  get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+};
+
+/* ---------- render catalog ---------- */
+let curCat = "all", query = "";
+const tabs = $("#tabs"), grid = $("#grid");
+tabs.innerHTML = CATS.map(c => {
+  const n = c.id === "all" ? PRODUCTS.length : PRODUCTS.filter(p => p.cat === c.id).length;
+  return `<button class="tab${c.id==="all"?" active":""}" data-cat="${c.id}">${c.name} <small>${n}</small></button>`;
+}).join("");
+
+const tagHtml = t => t==="hot" ? `<span class="tag hot">🔥 Хит</span>` : t==="new" ? `<span class="tag">Новинка</span>` : `<span class="tag free">В наличии</span>`;
+const icoHtml = p => `<div class="p-ico" style="background:linear-gradient(135deg,${p.c[0]},${p.c[1]});--glow:${p.c[0]}"><svg><use href="#${p.glyph}"/></svg></div>`;
+
+grid.innerHTML = PRODUCTS.map(p => `
+  <article class="card reveal" data-cat="${p.cat}" data-name="${(p.name+" "+p.desc).toLowerCase()}">
+    <div class="card-top">${icoHtml(p)}${tagHtml(p.tag)}</div>
+    <h3>${p.name}</h3>
+    <p>${p.desc}</p>
+    <ul class="feats">${p.feats.map(f=>`<li><svg><use href="#i-check"/></svg>${f}</li>`).join("")}</ul>
+    <div class="card-bot">
+      <div>
+        <div class="price">${p.old?`<s>${fmt(p.old)}</s>`:""}${fmt(p.price)}</div>
+        <div class="stock">В наличии</div>
+      </div>
+      <button class="add" data-add="${p.id}"><svg><use href="#i-plus"/></svg>В корзину</button>
+    </div>
+  </article>`).join("");
+
+function filter(){
+  let shown = 0;
+  grid.querySelectorAll(".card").forEach(c => {
+    const ok = (curCat==="all" || c.dataset.cat===curCat) && c.dataset.name.includes(query);
+    c.classList.toggle("hide", !ok);
+    if (ok){ shown++; c.classList.add("in"); }
+  });
+  $("#empty").classList.toggle("show", shown===0);
+}
+function setCat(id){
+  curCat = id;
+  tabs.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.cat===id));
+  filter();
+}
+tabs.addEventListener("click", e => { const t = e.target.closest(".tab"); if (t) setCat(t.dataset.cat); });
+$("#q").addEventListener("input", e => { query = e.target.value.trim().toLowerCase(); filter(); });
+document.querySelectorAll("[data-jump]").forEach(a => a.addEventListener("click", () => setCat(a.dataset.jump)));
+
+/* ---------- card spotlight + tilt ---------- */
+const fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
+grid.addEventListener("pointermove", e => {
+  const c = e.target.closest(".card"); if (!c) return;
+  const r = c.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+  c.style.setProperty("--mx", x+"px"); c.style.setProperty("--my", y+"px");
+  if (fine) c.style.transform = `perspective(900px) rotateX(${(y/r.height-.5)*-7}deg) rotateY(${(x/r.width-.5)*7}deg) translateY(-6px)`;
+});
+grid.addEventListener("pointerout", e => {
+  const c = e.target.closest(".card"); if (c && !c.contains(e.relatedTarget)) c.style.transform = "";
+});
+
+/* ---------- cart ---------- */
+let cart = store.get("nova_cart") || {};
+for (const k in cart) if (!byId[k]) delete cart[k];
+let discount = 0;
+
+const drawer = $("#drawer"), overlay = $("#overlay");
+const openCart = () => { drawer.classList.add("open"); overlay.classList.add("open"); };
+const closeCart = () => { drawer.classList.remove("open"); overlay.classList.remove("open"); };
+$("#cartBtn").onclick = openCart; $("#closeCart").onclick = closeCart; overlay.onclick = closeCart;
+addEventListener("keydown", e => { if (e.key === "Escape") closeCart(); });
+
+function renderCart(){
+  const ids = Object.keys(cart);
+  const count = ids.reduce((s,k)=>s+cart[k],0);
+  const sub = ids.reduce((s,k)=>s+byId[k].price*cart[k],0);
+  const disc = Math.round(sub*discount/100);
+  const badge = $("#badge");
+  badge.textContent = count; badge.classList.toggle("show", count>0);
+  $("#dBody").innerHTML = ids.length ? ids.map(k => { const p = byId[k]; return `
+    <div class="line">${icoHtml(p)}
+      <div class="line-info"><b>${p.name}</b><span>${fmt(p.price)}</span></div>
+      <div class="qty"><button data-dec="${k}">−</button><span>${cart[k]}</span><button data-inc="${k}">+</button></div>
+    </div>`; }).join("")
+    : `<div class="d-empty"><div>🛒</div><b>Корзина пуста</b><p style="margin-top:6px">Загляни в каталог — там много интересного</p></div>`;
+  $("#sSub").textContent = fmt(sub);
+  $("#discRow").style.display = disc ? "" : "none";
+  $("#sDisc").textContent = "−" + fmt(disc);
+  $("#sTotal").textContent = fmt(sub - disc);
+  store.set("nova_cart", cart);
+}
+
+function add(id, btn){
+  cart[id] = (cart[id]||0) + 1;
+  renderCart();
+  const b = $("#badge"); b.classList.remove("bump"); void b.offsetWidth; b.classList.add("bump");
+  toast(`«${byId[id].name}» в корзине`);
+  if (btn && btn.classList.contains("add")){
+    btn.classList.add("done"); btn.innerHTML = `<svg><use href="#i-check"/></svg>Добавлено`;
+    setTimeout(()=>{ btn.classList.remove("done"); btn.innerHTML = `<svg><use href="#i-plus"/></svg>В корзину`; }, 1400);
+  }
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-add]"); if (a) return add(a.dataset.add, a);
+  const i = e.target.closest("[data-inc]"); if (i){ cart[i.dataset.inc]++; return renderCart(); }
+  const d = e.target.closest("[data-dec]"); if (d){ const k = d.dataset.dec; if (--cart[k] <= 0) delete cart[k]; return renderCart(); }
+});
+
+$("#applyPromo").onclick = () => {
+  const code = $("#promo").value.trim().toUpperCase();
+  if (PROMOS[code]){ discount = PROMOS[code]; toast(`Промокод применён: −${discount}%`); }
+  else { discount = 0; toast("Такого промокода нет"); }
+  renderCart();
+};
+
+$("#checkout").onclick = () => {
+  const ids = Object.keys(cart);
+  if (!ids.length) return toast("Сначала добавь что-нибудь в корзину");
+  const sub = ids.reduce((s,k)=>s+byId[k].price*cart[k],0);
+  const lines = ids.map(k => `• ${byId[k].name} × ${cart[k]} = ${fmt(byId[k].price*cart[k])}`).join("\n");
+  const total = sub - Math.round(sub*discount/100);
+  const text = `Привет! Хочу оформить заказ в Nova Store:\n${lines}\n${discount?`Промокод: −${discount}%\n`:""}Итого: ${fmt(total)}`;
+  const url = TELEGRAM.includes("t.me/") && TELEGRAM.split("t.me/")[1]
+    ? `${TELEGRAM}?text=${encodeURIComponent(text)}`
+    : `https://t.me/share/url?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(text)}`;
+  window.open(url, "_blank", "noopener");
+};
+
+let tt;
+function toast(msg){
+  $("#toastText").textContent = msg;
+  const t = $("#toast"); t.classList.add("show");
+  clearTimeout(tt); tt = setTimeout(()=>t.classList.remove("show"), 2200);
+}
+
+/* ---------- faq ---------- */
+$("#faqList").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  const q = b.parentElement, was = q.classList.contains("open");
+  document.querySelectorAll(".q").forEach(x => x.classList.remove("open"));
+  if (!was) q.classList.add("open");
+});
+
+/* ---------- timer (до конца дня) ---------- */
+function tick(){
+  const now = new Date(), end = new Date(now); end.setHours(23,59,59,999);
+  let s = Math.max(0, Math.floor((end-now)/1000));
+  const pad = n => String(n).padStart(2,"0");
+  $("#th").textContent = pad(Math.floor(s/3600)); s%=3600;
+  $("#tm").textContent = pad(Math.floor(s/60));
+  $("#ts").textContent = pad(s%60);
+}
+tick(); setInterval(tick, 1000);
+
+/* ---------- header / menu ---------- */
+const hdr = $("#hdr");
+addEventListener("scroll", () => hdr.classList.toggle("scrolled", scrollY > 10), { passive:true });
+const mm = $("#mmenu");
+$("#burger").onclick = () => mm.classList.toggle("open");
+mm.addEventListener("click", e => { if (e.target.tagName === "A") mm.classList.remove("open"); });
+
+/* ---------- reveal + counters ---------- */
+const io = new IntersectionObserver(es => es.forEach(en => {
+  if (!en.isIntersecting) return;
+  const el = en.target;
+  const sibs = [...el.parentElement.children].filter(x => x.classList.contains("reveal"));
+  el.style.transitionDelay = Math.min(sibs.indexOf(el), 6) * 70 + "ms";
+  el.classList.add("in");
+  el.querySelectorAll("[data-count]").forEach(count);
+  io.unobserve(el);
+}), { threshold:.12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+function count(el){
+  const to = +el.dataset.count, suf = el.dataset.suffix || "", t0 = performance.now(), dur = 1800;
+  (function step(t){
+    const k = Math.min(1,(t-t0)/dur), e = 1 - Math.pow(1-k, 4);
+    el.textContent = Math.round(to*e).toLocaleString("ru-RU") + suf;
+    if (k < 1) requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ---------- cursor glow ---------- */
+const glow = $("#glow");
+if (fine) addEventListener("pointermove", e => { glow.style.left = e.clientX+"px"; glow.style.top = e.clientY+"px"; }, { passive:true });
+
+/* ---------- starfield ---------- */
+(function(){
+  const cv = $("#stars"), ctx = cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  let W, H, stars = [], dpr = Math.min(devicePixelRatio || 1, 2);
+  function init(){
+    W = cv.width = innerWidth*dpr; H = cv.height = innerHeight*dpr;
+    cv.style.width = innerWidth+"px"; cv.style.height = innerHeight+"px";
+    const n = Math.round(innerWidth*innerHeight/5000);
+    stars = Array.from({length:n}, () => ({
+      x:Math.random()*W, y:Math.random()*H, r:(Math.random()*1.3+.2)*dpr,
+      a:Math.random(), s:Math.random()*.015+.004, v:(Math.random()*.15+.03)*dpr,
+      h:Math.random() < .3 ? "216,180,254" : "255,255,255"
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for (const s of stars){
+      s.a += s.s; const al = .35 + Math.abs(Math.sin(s.a))*.65;
+      s.y -= s.v; if (s.y < 0){ s.y = H; s.x = Math.random()*W; }
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283);
+      ctx.fillStyle = `rgba(${s.h},${al})`; ctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  init(); draw(); addEventListener("resize", init);
+})();
+
+$("#yr").textContent = new Date().getFullYear();
+renderCart();
+</script>
+</body>
+</html>
