@@ -54,12 +54,12 @@ svg{display:block}
 .nav{position:sticky;top:0;z-index:50;background:rgba(5,3,8,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 .nav .w{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
 .logo{display:flex;align-items:center;gap:12px;white-space:nowrap}
-.mark{width:38px;height:38px;position:relative;flex:none}
-.mark i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--p2);box-shadow:0 0 18px rgba(168,85,247,.7),inset 0 0 12px rgba(168,85,247,.5)}
-.mark b{position:absolute;inset:11px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#d8b4fe 40%,#7c3aed);box-shadow:0 0 16px #c084fc}
-.mark u{position:absolute;inset:-3px 14px;border-radius:50%;border:1.5px solid rgba(232,121,249,.7);transform:rotate(60deg)}
-.logo .d{font-size:18px;letter-spacing:.06em}
-.logo .d em{font-style:normal;color:var(--p2)}
+.mark{width:40px;height:40px;position:relative;flex:none;display:block}
+.mark svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 8px rgba(168,85,247,.85)) drop-shadow(0 0 22px rgba(124,58,237,.6))}
+.wm{font-family:var(--body);font-size:23px;line-height:1;letter-spacing:-.045em;color:#fff;position:relative;padding-right:13px}
+.wm b{font-weight:800}
+.wm span{font-weight:500;color:#ece6ff}
+.wm sup{position:absolute;right:0;top:-5px;width:10px;height:10px;border:1.3px solid #fff;border-radius:50%;font-size:6.5px;font-weight:800;letter-spacing:0;display:grid;place-items:center;line-height:1}
 .menu{display:flex;gap:4px}
 .menu a{padding:10px 16px;font-weight:600;font-size:14.5px;color:var(--soft);border-radius:10px;transition:.2s}
 .menu a:hover{color:#fff;background:rgba(168,85,247,.12)}
@@ -77,7 +77,7 @@ svg{display:block}
 .tg-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px -10px rgba(255,255,255,.6)}
 .tg-btn svg{width:18px;height:18px}
 @media(max-width:900px){.menu{display:none}}
-@media(max-width:520px){.tg-btn{display:none}.cart-btn .lab{display:none}.logo .d{font-size:16px}}
+@media(max-width:520px){.tg-btn{display:none}.cart-btn .lab{display:none}.wm{font-size:21px}}
 html:not(.js) .cart-btn{display:none}
 
 /* ============ hero ============ */
@@ -454,6 +454,10 @@ footer{margin-top:120px;border-top:1px solid var(--line);position:relative;overf
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
+    <linearGradient id="starG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3e8ff"/><stop offset=".45" stop-color="#b98cff"/><stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <symbol id="i-star" viewBox="0 0 40 40"><path fill="url(#starG)" d="M20 1.5C21.2 13 26 18.6 38.5 20 26 21.4 21.2 27 20 38.5 18.8 27 14 21.4 1.5 20 14 18.6 18.8 13 20 1.5Z"/><path fill="none" stroke="#fff" stroke-opacity=".35" stroke-width=".6" d="M20 4v32M4 20h32"/></symbol>
     <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
@@ -480,7 +484,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);position:relative;overf
 
 <header class="nav" id="nav">
   <div class="w">
-    <a href="#top" class="logo"><span class="mark"><i></i><u></u><b></b></span><span class="d">Nova <em>Store</em></span></a>
+    <a href="#top" class="logo" aria-label="Nova Store"><span class="mark"><svg viewBox="0 0 40 40"><use href="#i-star"/></svg></span><span class="wm"><b>nova</b><span>store</span><sup>R</sup></span></a>
     <nav class="menu">
       <a href="#cats">Категории</a><a href="#catalog">Каталог</a><a href="#offer">Акция</a><a href="#reviews">Отзывы</a><a href="#faq">FAQ</a>
     </nav>
@@ -835,7 +839,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);position:relative;overf
       <div><div class="lbl">Отзывы</div><h2 class="h2 d">Пишут <em>нам</em></h2></div>
     </div>
     <div class="chat reveal">
-      <div class="chat-top"><span class="mark"><i></i><u></u><b></b></span><div><b>Nova Store · отзывы</b><small>● онлайн</small></div></div>
+      <div class="chat-top"><span class="mark"><svg viewBox="0 0 40 40"><use href="#i-star"/></svg></span><div><b>Nova Store · отзывы</b><small>● онлайн</small></div></div>
       <div class="msgs">
         <div class="msg"><span class="ava" style="background:linear-gradient(135deg,#10b981,#065f46)">А</span><div class="bub"><span class="n" style="color:#6ee7b7">Артём</span>Взял ChatGPT с оффером — пришло за минуту, всё работает 🔥 <span class="stars">★★★★★</span><span class="t">18:42</span></div></div>
         <div class="msg"><span class="ava" style="background:linear-gradient(135deg,#f97316,#9a3412)">М</span><div class="bub"><span class="n" style="color:#fdba74">Максим</span>Лучшие цены на Google акки, поддержка быстро помогла со входом <span class="stars">★★★★★</span><span class="t">18:45</span></div></div>
@@ -881,7 +885,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);position:relative;overf
 <footer>
   <div class="w">
     <div class="foot">
-      <div><a href="#top" class="logo"><span class="mark"><i></i><u></u><b></b></span><span class="d">Nova <em>Store</em></span></a><p>Цифровые товары с мгновенной выдачей: аккаунты, подписки и ключи.</p></div>
+      <div><a href="#top" class="logo" aria-label="Nova Store"><span class="mark"><svg viewBox="0 0 40 40"><use href="#i-star"/></svg></span><span class="wm"><b>nova</b><span>store</span><sup>R</sup></span></a><p>Цифровые товары с мгновенной выдачей: аккаунты, подписки и ключи.</p></div>
       <div><h4>Магазин</h4><ul><li><a href="#catalog">Каталог</a></li><li><a href="#offer">Акция</a></li><li><a href="#reviews">Отзывы</a></li></ul></div>
       <div><h4>Категории</h4><ul><li><a href="#catalog" data-jump="ai">Нейросети</a></li><li><a href="#catalog" data-jump="acc">Аккаунты</a></li><li><a href="#catalog" data-jump="keys">Ключи</a></li></ul></div>
       <div><h4>Помощь</h4><ul><li><a href="#how">Как купить</a></li><li><a href="#faq">FAQ</a></li><li><a class="tg" href="https://t.me/" target="_blank" rel="noopener">Поддержка</a></li></ul></div>
@@ -977,7 +981,7 @@ function render(){
     <div class="li"><div class="mini" style="background:linear-gradient(135deg,${p.c1},${p.c2})">${p.ico}</div>
       <div class="li-i"><b>${p.name}</b><span>${fmt(p.price)}</span></div>
       <div class="qty"><button data-dec="${k}" aria-label="Меньше">−</button><span>${cart[k]}</span><button data-inc="${k}" aria-label="Больше">+</button></div></div>`; }).join("")
-    : `<div class="de"><span class="mark"><i></i><u></u><b></b></span><b>Корзина пуста</b>Загляни в каталог — там много интересного</div>`;
+    : `<div class="de"><span class="mark"><svg viewBox="0 0 40 40"><use href="#i-star"/></svg></span><b>Корзина пуста</b>Загляни в каталог — там много интересного</div>`;
   $("#sub").textContent = fmt(t.sub); $("#discRow").hidden = !t.d; $("#disc").textContent = "−"+fmt(t.d); $("#tot").textContent = fmt(t.tot);
   store.set("nova_cart2", cart);
 }
